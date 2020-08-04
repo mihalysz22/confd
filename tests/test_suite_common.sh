@@ -456,6 +456,7 @@ kill_typha() {
 test_confd_templates() {
     # Compare the templates until they match (for a max of 10s).
     testdir=$1
+    echo "testdir: $testdir"
     for i in $(seq 1 10); do echo "comparing templates attempt $i" && compare_templates $testdir 0 false && break || sleep 1; done
     compare_templates $testdir 1 ${UPDATE_EXPECTED_DATA}
 }
@@ -486,6 +487,7 @@ compare_templates() {
                 rc=1;
             fi
             if [ $output -ne 0 ]; then
+                echo "expected: $expected actual: $actual"
                 echo "Failed: $f templates do not match, showing diff of expected vs received"
                 set +e
                 diff ${expected} ${actual}
