@@ -130,8 +130,6 @@ template bgp bgp_template {
 
 {{- $node_cid_key := printf "/host/%s/rr_cluster_id" (getenv "NODENAME")}}
 {{- $node_cluster_id := getv $node_cid_key}}
-
-
 # ------------- Global peers -------------
 {{if ls "/global/peer_v4"}}
 {{range gets "/global/peer_v4/*"}}{{$data := json .Value}}
